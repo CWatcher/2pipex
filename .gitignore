@@ -1,0 +1,16 @@
+*.bak
+*.dSYM
+*.swp
+*.o
+*.d
+*.a
+*.so
+*.out
+.DS_Store
+.vscode/*.log
+.vscode/settings.json
+.idea
+cmake-build-debug
+*/.gitignore
+pipex
+tst*
