@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 12:32:57 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/06/11 19:07:14 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/06/12 22:14:09 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char			*ft_skipchr(const char *s, char delim);
 char			*ft_skipchrs(const char *s, const char *delim);
 char			*ft_skipwd(const char *s, char delim);
 char			**ft_split(char const *s, char c);
+char			**ft_freestrs(char **ps);
 char			*ft_itoa(int n);
 char			*ft_ulltoa_base(unsigned long long int num, unsigned char b);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));

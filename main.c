@@ -6,10 +6,14 @@
 
 void	run_cmd(const char *cmd, char *const *envp)
 {
-	char *argv[] = {".", NULL};
-	char *path = ft_strjoin("/bin/", cmd);
+	char **argv;
+	char *path;
+
+	argv = ft_split(cmd, ' ');
+	path = ft_strjoin("/bin/", argv[0]);
 	int r =	execve(path, argv, envp);
 	path = ft_free(path);
+	argv = ft_freestrs(argv);
 	if (r < 0)
 	{
 		perror("Failed to execve()");

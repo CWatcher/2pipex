@@ -6,13 +6,16 @@
 #    By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 13:28:54 by CWatcher          #+#    #+#              #
-#    Updated: 2021/06/11 19:01:31 by CWatcher         ###   ########.fr        #
+#    Updated: 2021/06/12 22:38:41 by CWatcher         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 SRC		= ft_strlen.c		\
 		  ft_strjoin.c		\
+		  ft_strndup.c		\
+		  ft_skipchr.c		\
+		  ft_split.c		\
 		  ft_free.c
 OBJ		= $(SRC:.c=.o)
 NAME	= libft.a
