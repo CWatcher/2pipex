@@ -1,6 +1,6 @@
 SRC		= main.c
 OBJ		= $(SRC:.c=.o)
-CFLAGS	= -Wall -Wextra -Wpedantic -Werror
+CFLAGS	= -Wall -Wextra -Wpedantic -Werror -g
 NAME	= pipex
 LIB		= ft
 LIBD	= lib$(LIB)
