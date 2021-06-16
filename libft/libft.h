@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 12:32:57 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/06/12 22:14:09 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/06/15 18:46:56 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int				ft_toupper(int c);
 int				ft_tolower(int c);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strappend(char **ps, const char *s2);
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_skipchr(const char *s, char delim);
 char			*ft_skipchrs(const char *s, const char *delim);
