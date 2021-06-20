@@ -6,12 +6,13 @@
 #    By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 13:28:54 by CWatcher          #+#    #+#              #
-#    Updated: 2021/06/15 18:47:39 by CWatcher         ###   ########.fr        #
+#    Updated: 2021/06/20 13:48:36 by CWatcher         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 SRC		= ft_strlen.c		\
+		  ft_strchr.c		\
 		  ft_strncmp.c		\
 		  ft_strndup.c		\
 		  ft_strjoin.c		\

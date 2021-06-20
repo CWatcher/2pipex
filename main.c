@@ -18,21 +18,25 @@ void	run_cmd(const char *cmd, char *paths[], char *envp[])
 {
 	char	**argv = ft_split(cmd, ' ');
 	char	*path;
+	int		r;
 
-	int r =	execve(argv[0], argv, envp);
-	while (r == -1 && *paths)
-	{
-		if ((*paths)[ft_strlen(*paths)] != '/')
-			ft_strappend(paths, "/");
-		path = ft_strjoin(*paths, argv[0]);
-		r =	execve(path, argv, envp);
-		path = ft_free(path);
-		paths++;
-	}
+	r = -1;
+	if (ft_strchr("/~", argv[0][0]))
+		r =	execve(argv[0], argv, envp);
+	else
+		while (r == -1 && *paths)
+		{
+			if ((*paths)[ft_strlen(*paths)] != '/')
+				ft_strappend(paths, "/");
+			path = ft_strjoin(*paths, argv[0]);
+			r =	execve(path, argv, envp);
+			path = ft_free(path);
+			paths++;
+		}
 	argv = ft_freestrs(argv);
 	if (r == -1)
 	{
-		perror("Failed to execve()");
+		perror("Failed to execve()"); //TODO print argument on which error occured
 		exit(errno);
 	}
 }
