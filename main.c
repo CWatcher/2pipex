@@ -36,14 +36,6 @@ void	run_cmd(const char *cmd, char *paths[], char *envp[])
 		exit(errno);
 	}
 }
-void	print_strs(char *strs[])
-{
-	while (*strs)
-	{
-		printf("%s\n", *strs);
-		strs++;
-	}
-}
 int	main(int argc, char *argv[], char *envp[])
 {
 	if (argc != 5)
@@ -51,7 +43,6 @@ int	main(int argc, char *argv[], char *envp[])
 		puts("Error:\nThe number of arguments is not equal to 4"); //UNAUTHORIZED
 		exit(4);
 	}
-	print_strs(envp);
 	char **paths = ft_split(find_value(envp, "PATH="), ':');
 	run_cmd(argv[2], paths, envp);
 }
