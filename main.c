@@ -21,7 +21,7 @@ void	run_cmd(const char *cmd, char *paths[], char *envp[])
 	int		r;
 
 	r = -1;
-	if (ft_strchr("/~", argv[0][0]))
+	if (ft_strchr(argv[0], '/'))
 		r =	execve(argv[0], argv, envp);
 	else
 		while (r == -1 && *paths)
