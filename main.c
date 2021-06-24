@@ -33,17 +33,28 @@ void	run_cmd(const char *cmd, char *paths[], char *envp[])
 			path = ft_free(path);
 			paths++;
 		}
-	argv = ft_freestrs(argv);
-	if (r == -1)
+	argv = ft_freestrs(argv);	if (r == -1)
 	{
 		perror("Failed to execve()"); //TODO print argument on which error occured
+		exit(errno);
+	}
+}
+void	fork_cmd(const char *cmd, char *paths[], char *envp[])
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
+		run_cmd(cmd, paths, envp);
+	if (pid < 0)
+	{
+		perror("Failed to fork()");  //TODO print argument on which error occured
 		exit(errno);
 	}
 }
 int	main(int argc, char *argv[], char *envp[])
 {
 	char	**paths;
-	pid_t	pid;
 
 	if (argc != 5)
 	{
@@ -51,20 +62,6 @@ int	main(int argc, char *argv[], char *envp[])
 		exit(4);
 	}
 	paths = ft_split(find_value(envp, "PATH="), ':');
-	pid = fork();
-	if (pid == 0)
-		run_cmd(argv[2], paths, envp);
-	if (pid < 0)
-	{
-		perror("Failed to fork()");  //TODO print argument on which error occured
-		exit(errno);
-	}
-	pid = fork();
-	if (pid == 0)
-		run_cmd(argv[3], paths, envp);
-	if (pid < 0)
-	{
-		perror("Failed to fork()");  //TODO print argument on which error occured
-		exit(errno);
-	}
+	fork_cmd(argv[2], paths, envp);
+	fork_cmd(argv[3], paths, envp);
 }
