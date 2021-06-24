@@ -42,11 +42,29 @@ void	run_cmd(const char *cmd, char *paths[], char *envp[])
 }
 int	main(int argc, char *argv[], char *envp[])
 {
+	char	**paths;
+	pid_t	pid;
+
 	if (argc != 5)
 	{
 		puts("Error:\nThe number of arguments is not equal to 4"); //UNAUTHORIZED
 		exit(4);
 	}
-	char **paths = ft_split(find_value(envp, "PATH="), ':');
-	run_cmd(argv[2], paths, envp);
+	paths = ft_split(find_value(envp, "PATH="), ':');
+	pid = fork();
+	if (pid == 0)
+		run_cmd(argv[2], paths, envp);
+	if (pid < 0)
+	{
+		perror("Failed to fork()");  //TODO print argument on which error occured
+		exit(errno);
+	}
+	pid = fork();
+	if (pid == 0)
+		run_cmd(argv[3], paths, envp);
+	if (pid < 0)
+	{
+		perror("Failed to fork()");  //TODO print argument on which error occured
+		exit(errno);
+	}
 }
