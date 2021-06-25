@@ -1,4 +1,5 @@
-SRC		= main.c
+SRC		= main.c	\
+		  exit_me.c
 OBJ		= $(SRC:.c=.o)
 CFLAGS	= -Wall -Wextra -Wpedantic -Werror -g -fsanitize=address
 NAME	= pipex
