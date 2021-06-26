@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <sys/wait.h>
 #include "libft.h"
 #include "exit_me.h"
 
@@ -48,8 +49,11 @@ void	fork_cmd(const char *cmd, char *envp[])
 }
 int	main(int argc, char *argv[], char *envp[])
 {
+	int	status;
+
 	if (argc != 5)
 		exit_me("The number of arguments is not equal to 4");
 	fork_cmd(argv[2], envp);
 	fork_cmd(argv[3], envp);
+	wait(&status);
 }
