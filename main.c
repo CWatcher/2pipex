@@ -12,9 +12,10 @@ char	*find_value(char *vars[], char *var_name_with_delimiter)
 		return (NULL);
 	return (*vars + var_name_w_d_l);
 }
-void	run_cmd(const char *cmd, char *paths[], char *envp[])
+void	run_cmd(const char *cmd, char *envp[])
 {
-	char	**argv = ft_split(cmd, ' ');
+	char **argv = ft_split(cmd, ' ');
+	char **paths = ft_split(find_value(envp, "PATH="), ':');
 	char	*path;
 	int		r;
 
@@ -35,23 +36,20 @@ void	run_cmd(const char *cmd, char *paths[], char *envp[])
 	if (r == -1)
 		exit_me("Failed to execve()"); //TODO print argument on which error occured
 }
-void	fork_cmd(const char *cmd, char *paths[], char *envp[])
+void	fork_cmd(const char *cmd, char *envp[])
 {
 	pid_t	pid;
 
 	pid = fork();
 	if (pid == 0)
-		run_cmd(cmd, paths, envp);
+		run_cmd(cmd, envp);
 	if (pid < 0)
 		exit_me("Failed to fork()");  //TODO print argument on which error occured
 }
 int	main(int argc, char *argv[], char *envp[])
 {
-	char	**paths;
-
 	if (argc != 5)
 		exit_me("The number of arguments is not equal to 4");
-	paths = ft_split(find_value(envp, "PATH="), ':');
-	fork_cmd(argv[2], paths, envp);
-	fork_cmd(argv[3], paths, envp);
+	fork_cmd(argv[2], envp);
+	fork_cmd(argv[3], envp);
 }
