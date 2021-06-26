@@ -2,7 +2,7 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: clang build active file",
+            "label": "C/C++: make with cc the project",
             "command": "make",
             "args": [
             //     "-g",
