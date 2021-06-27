@@ -15,25 +15,28 @@ char	*find_value(char *vars[], char *var_name_with_delimiter)
 }
 void	run_cmd(const char *cmd, char *envp[])
 {
-	char **argv = ft_split(cmd, ' ');
-	char **paths = ft_split(find_value(envp, "PATH="), ':');
-	char	*path;
+	char	**argv = ft_split(cmd, ' ');
+	char	**search_dirs = ft_split(find_value(envp, "PATH="), ':');
+	char	**dir;
+	char	*pathname;
 	int		r;
 
+	dir = search_dirs;
 	r = -1;
 	if (ft_strchr(argv[0], '/'))
 		r =	execve(argv[0], argv, envp);
 	else
-		while (r == -1 && *paths)
+		while (r == -1 && *dir)
 		{
-			if ((*paths)[ft_strlen(*paths)] != '/')
-				ft_strappend(paths, "/");
-			path = ft_strjoin(*paths, argv[0]);
-			r =	execve(path, argv, envp);
-			path = ft_free(path);
-			paths++;
+			if ((*dir)[ft_strlen(*dir)] != '/')
+				ft_strappend(dir, "/");
+			pathname = ft_strjoin(*dir, argv[0]);
+			r =	execve(pathname, argv, envp);
+			pathname = ft_free(pathname);
+			dir++;
 		}
 	argv = ft_freestrs(argv);
+	search_dirs = ft_freestrs(search_dirs);
 	if (r == -1)
 		exit_me("Failed to execve()"); //TODO print argument on which error occured
 }
