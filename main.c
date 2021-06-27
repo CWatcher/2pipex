@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <fcntl.h>
 #include <sys/wait.h>
 #include "libft.h"
 #include "exit_me.h"
@@ -40,22 +41,31 @@ void	run_cmd(const char *cmd, char *envp[])
 	if (r == -1)
 		exit_me("Failed to execve()"); //TODO print argument on which error occured
 }
-void	fork_cmd(const char *cmd, char *envp[])
+void	fork_cmd(const char *cmd, char *envp[], int fd2)
 {
 	pid_t	pid;
 
 	pid = fork();
 	if (pid == 0)
+	{
+		if (fd2 > 1)
+			dup2(fd2, STDOUT_FILENO);
 		run_cmd(cmd, envp);
+		if (fd2 > 1)
+			close(fd2);
+	}
 	if (pid < 0)
 		exit_me("Failed to fork()");  //TODO print argument on which error occured
 }
 int	main(int argc, char *argv[], char *envp[])
 {
+	int	fd2;
+
 	if (argc != 5)
 		exit_me("The number of arguments is not equal to 4");
-	fork_cmd(argv[2], envp);
-	fork_cmd(argv[3], envp);
+	fd2 = open(argv[4], O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+	fork_cmd(argv[2], envp, -1);
+	fork_cmd(argv[3], envp, fd2);
 	wait(NULL);
 	wait(NULL);
 }
