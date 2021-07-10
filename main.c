@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/wait.h>
+#include <errno.h>
 #include "libft.h"
 #include "exit_me.h"
 
@@ -48,14 +49,16 @@ void	fork_cmd(const char *cmd, char *envp[], int fd_in, int fd_out)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (dup2(fd_in, STDIN_FILENO) != STDIN_FILENO)
+		if (fd_in >= 0 && dup2(fd_in, STDIN_FILENO) != STDIN_FILENO)
 			exit_me(ft_strjoin("fork_cmd(): failed to dup2 on ", cmd));
-		if (dup2(fd_out, STDOUT_FILENO) != STDOUT_FILENO)
+		if (fd_out >= 0 && dup2(fd_out, STDOUT_FILENO) != STDOUT_FILENO)
 			exit_me("fork_cmd(): failed to dup2");
-		run_cmd(cmd, envp);
-		close(fd_in);
-		close(fd_out);
 	}
+	close(fd_in);
+	close(fd_out);
+	errno = 0;
+	if (pid == 0)
+		run_cmd(cmd, envp);
 	if (pid < 0)
 		exit_me("Failed to fork()");  //TODO print argument on which error occured
 }
@@ -73,8 +76,8 @@ int	main(int argc, char *argv[], char *envp[])
 	fd_out = open(argv[4], O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd_out < 0)
 		exit_me("Failed to open file2");
-	fork_cmd(argv[2], envp, fd_in, STDOUT_FILENO);
-	fork_cmd(argv[3], envp, STDIN_FILENO, fd_out);
+	fork_cmd(argv[2], envp, fd_in, -1);
+	fork_cmd(argv[3], envp, -1, fd_out);
 	wait(NULL);
 	wait(NULL);
 }
