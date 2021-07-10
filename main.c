@@ -48,15 +48,15 @@ void	fork_cmd(const char *cmd, char *envp[], int fd2)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (fd2 > 1)
-			dup2(fd2, STDOUT_FILENO);
+		if (dup2(fd2, STDOUT_FILENO) != STDOUT_FILENO)
+			exit_me("fork_cmd(): failed to dup2");
 		run_cmd(cmd, envp);
-		if (fd2 > 1)
-			close(fd2);
+		close(fd2);
 	}
 	if (pid < 0)
 		exit_me("Failed to fork()");  //TODO print argument on which error occured
 }
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	int	fd2;
@@ -64,7 +64,9 @@ int	main(int argc, char *argv[], char *envp[])
 	if (argc != 5)
 		exit_me("The number of arguments is not equal to 4");
 	fd2 = open(argv[4], O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-	fork_cmd(argv[2], envp, -1);
+	if (fd2 < 0)
+		exit_me("Failed to open file2");
+	fork_cmd(argv[2], envp,STDOUT_FILENO);
 	fork_cmd(argv[3], envp, fd2);
 	wait(NULL);
 	wait(NULL);
