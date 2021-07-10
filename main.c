@@ -41,17 +41,20 @@ void	run_cmd(const char *cmd, char *envp[])
 	if (r == -1)
 		exit_me("Failed to execve()"); //TODO print argument on which error occured
 }
-void	fork_cmd(const char *cmd, char *envp[], int fd2)
+void	fork_cmd(const char *cmd, char *envp[], int fd_in, int fd_out)
 {
 	pid_t	pid;
 
 	pid = fork();
 	if (pid == 0)
 	{
-		if (dup2(fd2, STDOUT_FILENO) != STDOUT_FILENO)
+		if (dup2(fd_in, STDIN_FILENO) != STDIN_FILENO)
+			exit_me(ft_strjoin("fork_cmd(): failed to dup2 on ", cmd));
+		if (dup2(fd_out, STDOUT_FILENO) != STDOUT_FILENO)
 			exit_me("fork_cmd(): failed to dup2");
 		run_cmd(cmd, envp);
-		close(fd2);
+		close(fd_in);
+		close(fd_out);
 	}
 	if (pid < 0)
 		exit_me("Failed to fork()");  //TODO print argument on which error occured
@@ -59,15 +62,19 @@ void	fork_cmd(const char *cmd, char *envp[], int fd2)
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	int	fd2;
+	int	fd_in;
+	int	fd_out;
 
 	if (argc != 5)
 		exit_me("The number of arguments is not equal to 4");
-	fd2 = open(argv[4], O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-	if (fd2 < 0)
+	fd_in = open(argv[4], O_RDONLY);
+	if (fd_in < 0)
+		exit_me(ft_strjoin("Failed to open ", argv[1])); //TODO leak?
+	fd_out = open(argv[4], O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+	if (fd_out < 0)
 		exit_me("Failed to open file2");
-	fork_cmd(argv[2], envp,STDOUT_FILENO);
-	fork_cmd(argv[3], envp, fd2);
+	fork_cmd(argv[2], envp, fd_in, STDOUT_FILENO);
+	fork_cmd(argv[3], envp, STDIN_FILENO, fd_out);
 	wait(NULL);
 	wait(NULL);
 }
