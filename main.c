@@ -70,7 +70,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	if (argc != 5)
 		exit_me("The number of arguments is not equal to 4");
-	fd_in = open(argv[4], O_RDONLY);
+	fd_in = open(argv[1], O_RDONLY);
 	if (fd_in < 0)
 		exit_me(ft_strjoin("Failed to open ", argv[1])); //TODO leak?
 	fd_out = open(argv[4], O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
