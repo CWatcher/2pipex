@@ -67,17 +67,20 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	int	fd_in;
 	int	fd_out;
+	int pipe_fds[2];
 
 	if (argc != 5)
 		exit_me("The number of arguments is not equal to 4");
 	fd_in = open(argv[1], O_RDONLY);
 	if (fd_in < 0)
 		exit_me(ft_strjoin("Failed to open ", argv[1])); //not a leak (pointer is not lost). Tested by valgrind and andress sanitizer
+	if (pipe(pipe_fds) < 0)
+		exit_me("Failed to pipe()");
 	fd_out = open(argv[4], O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd_out < 0)
 		exit_me("Failed to open file2");
-	fork_cmd(argv[2], envp, fd_in, -1);
-	fork_cmd(argv[3], envp, -1, fd_out);
+	fork_cmd(argv[2], envp, fd_in, pipe_fds[1]);
+	fork_cmd(argv[3], envp, pipe_fds[0], fd_out);
 	wait(NULL);
 	wait(NULL);
 }
