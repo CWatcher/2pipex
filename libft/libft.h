@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 12:32:57 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/06/15 18:46:56 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/07/19 02:50:51 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ ssize_t			ft_putcn(char c, ssize_t n);
 void			ft_putchar_fd(char c, int fd);
 ssize_t			ft_puts(const char *s);
 ssize_t			ft_putsn(const char *s, ssize_t n);
-void			ft_putstr_fd(char *s, int fd);
+void			ft_putstr_fd(const char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 
