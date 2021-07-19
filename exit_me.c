@@ -5,7 +5,7 @@
 #include "libft.h"
 
 
-void	exit_me(char *error)
+void	exit_me(const char *error)
 {
 	if (!error)
 		exit(EXIT_SUCCESS);
