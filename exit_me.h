@@ -1,1 +1,18 @@
-void	exit_me(const char *error);
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit_me.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/21 17:04:36 by CWatcher          #+#    #+#             */
+/*   Updated: 2021/07/21 17:17:38 by CWatcher         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef EXIT_ME_H
+# define EXIT_ME_H
+
+void	exit_me(char *dynamic_error);
+
+#endif
