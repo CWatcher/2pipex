@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 19:25:15 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/06/12 22:33:02 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/07/21 17:53:26 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static size_t	ft_wdlen(const char *s, char delim)
 {
-	size_t n;
+	size_t	n;
 
 	n = 0;
 	while (s && s[n] && s[n] != delim)
@@ -25,20 +25,22 @@ static size_t	ft_wdlen(const char *s, char delim)
 
 static size_t	ft_wdcount(const char *s, char delim)
 {
-	size_t n;
+	size_t	n;
 
 	n = 0;
-	while (s && *(s = ft_skipchr(s, delim)))
+	s = ft_skipchr(s, delim);
+	while (s && *s)
 	{
 		n++;
 		s += ft_wdlen(s, delim);
+		s = ft_skipchr(s, delim);
 	}
 	return (n);
 }
 
-char		**ft_freestrs(char **ps)
+char	**ft_freestrs(char **ps)
 {
-	char **pp;
+	char	**pp;
 
 	if (!ps)
 		return (NULL);
@@ -49,7 +51,7 @@ char		**ft_freestrs(char **ps)
 	return (NULL);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**ps;
 	size_t	n;
@@ -59,14 +61,16 @@ char			**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	n = ft_wdcount(s, c);
-	if (!(ps = malloc((n + 1) * sizeof(*ps))))
+	ps = malloc((n + 1) * sizeof(*ps));
+	if (!ps)
 		return (NULL);
 	i = 0;
 	while (i < n)
 	{
 		s = ft_skipchr(s, c);
 		l = ft_wdlen(s, c);
-		if (!(ps[i] = ft_strndup(s, l)))
+		ps[i] = ft_strndup(s, l);
+		if (!(ps))
 			return (ps = ft_freestrs(ps));
 		s += l;
 		i++;

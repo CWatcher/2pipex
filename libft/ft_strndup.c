@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
+/*   By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 13:01:39 by CWatcher          #+#    #+#             */
-/*   Updated: 2020/11/16 13:01:53 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/07/21 18:05:29 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ char	*ft_strndup(const char *s, size_t n)
 	if (!s)
 		return (NULL);
 	l = ft_strlen(s);
-	n = n < l ? n : l;
-	if (!(d = malloc((n + 1) * sizeof(char))))
+	if (l < n)
+		n = l;
+	d = malloc((n + 1) * sizeof(char));
+	if (!d)
 		return (NULL);
 	i = 0;
 	while (i < n)

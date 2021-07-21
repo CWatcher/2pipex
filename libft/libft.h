@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 12:32:57 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/07/21 11:44:10 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/07/21 16:59:00 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void			ft_swap_double(double *px, double *py);
 
 void			*ft_free(void *pp);
 void			ft_reassign(void **p, void *new_address);
-
 
 int				get_next_line(int fd, char **ln);
 #endif
