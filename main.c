@@ -91,7 +91,7 @@ int	main(int argc, char *argv[], char *envp[])
 		exit_me(ft_strjoin("Failed to open ", argv[1])); //not a leak (pointer is not lost). Tested by valgrind and andress sanitizer
 	if (pipe(pipe_fds) < 0)
 		exit_me("Failed to pipe()");
-	fd_out = open(argv[4], O_CREAT | O_WRONLY,
+	fd_out = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd_out < 0)
 		exit_me("Failed to open file2");
