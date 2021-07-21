@@ -13,4 +13,5 @@
 cmake-build-debug
 */.gitignore
 pipex
+pipex_bonus
 tst*
