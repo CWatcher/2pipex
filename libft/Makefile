@@ -6,7 +6,7 @@
 #    By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 13:28:54 by CWatcher          #+#    #+#              #
-#    Updated: 2021/06/25 08:03:33 by CWatcher         ###   ########.fr        #
+#    Updated: 2021/07/21 11:42:46 by CWatcher         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,15 @@
 SRC		= ft_strlen.c		\
 		  ft_strchr.c		\
 		  ft_strncmp.c		\
+		  ft_strdup.c		\
 		  ft_strndup.c		\
 		  ft_strjoin.c		\
 		  ft_strappend.c	\
 		  ft_skipchr.c		\
 		  ft_split.c		\
 		  ft_putstr_fd.c	\
-		  ft_free.c
+		  ft_free.c			\
+		  ft_reassign.c
 OBJ		= $(SRC:.c=.o)
 NAME	= libft.a
 SO		= $(NAME:.a=.so)

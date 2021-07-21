@@ -2,6 +2,8 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 #include <errno.h>
+#include <stdlib.h>
+#include <stdio.h> //debug
 #include "libft.h"
 #include "exit_me.h"
 
@@ -15,34 +17,45 @@ char	*find_value(char *vars[], char *var_name_with_delimiter)
 		return (NULL);
 	return (*vars + var_name_w_d_l);
 }
-void	run_cmd(const char *cmd, char *envp[])
+char	*get_exec_pathname(const char *filename, const char *path_var)
 {
-	char **const	argv = ft_split(cmd, ' ');
-	char **const	search_dirs = ft_split(find_value(envp, "PATH="), ':');
-	char			**dir;
+	char **const	search_dirs = ft_split(path_var, ':');
 	char			*pathname;
-	int				last_errno;
+	char			*found_pathname;
+	char			**dir;
+	int				r;
 
 	dir = search_dirs;
-	last_errno = ENOENT;
-	if (ft_strchr(argv[0], '/'))
-		execve(argv[0], argv, envp);
-	else
-		while (*dir)
-		{
-			if ((*dir)[ft_strlen(*dir)] != '/')
-				ft_strappend(dir, "/");
-			pathname = ft_strjoin(*dir, argv[0]);
-			execve(pathname, argv, envp);
-			if (errno != ENOENT)
-				last_errno = errno;
+	r = -1;
+	found_pathname = ft_strdup(filename);
+	while (*dir && r == -1)
+	{
+		if ((*dir)[ft_strlen(*dir)] != '/')
+			ft_strappend(dir, "/");
+		pathname = ft_strjoin(*dir, filename);
+		r = access(pathname, X_OK);
+		if (r == 0 || errno != ENOENT)
+			ft_reassign((void **)&found_pathname, pathname);
+		else
 			pathname = ft_free(pathname);
-			dir++;
-		}
-	ft_freestrs(argv);
+		dir++;
+	}
 	ft_freestrs(search_dirs);
-	errno = last_errno;
-	exit_me(pathname); //TODO print argument on which error occured
+	return (found_pathname);
+}
+void	run_cmd(const char *cmd, char *envp[])
+{
+	char	**argv;
+	char	*pathname;
+
+	argv = ft_split(cmd, ' ');
+	if (ft_strchr(argv[0], '/'))
+		pathname = ft_strdup(argv[0]);
+	else
+		pathname = get_exec_pathname(argv[0], find_value(envp, "PATH="));
+	execve(pathname, argv, envp);
+	ft_freestrs(argv);
+	exit_me(pathname); //TODO free pathname
 }
 void	fork_cmd(const char *cmd, char *envp[], int fd_in, int fd_out)
 {
@@ -62,7 +75,7 @@ void	fork_cmd(const char *cmd, char *envp[], int fd_in, int fd_out)
 	if (pid == 0)
 		run_cmd(cmd, envp);
 	if (pid < 0)
-		exit_me("Failed to fork()");  //TODO print argument on which error occured
+		exit_me("Failed to fork()"); //TODO print argument on error
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -78,7 +91,8 @@ int	main(int argc, char *argv[], char *envp[])
 		exit_me(ft_strjoin("Failed to open ", argv[1])); //not a leak (pointer is not lost). Tested by valgrind and andress sanitizer
 	if (pipe(pipe_fds) < 0)
 		exit_me("Failed to pipe()");
-	fd_out = open(argv[4], O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+	fd_out = open(argv[4], O_CREAT | O_WRONLY,
+			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd_out < 0)
 		exit_me("Failed to open file2");
 	fork_cmd(argv[2], envp, fd_in, pipe_fds[1]);
