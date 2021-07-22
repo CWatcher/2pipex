@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 17:04:17 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/07/21 17:04:32 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/07/22 13:13:26 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ int	main(int argc, char *argv[], char *envp[])
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd_out < 0)
 		exit_me(ft_strjoin("Failed to open:", argv[4]));
-	fork_cmd(argv[2], envp, fd_in, pipe_fds[1]);
 	fork_cmd(argv[3], envp, pipe_fds[0], fd_out);
+	fork_cmd(argv[2], envp, fd_in, pipe_fds[1]);
 	wait(NULL);
 	wait(NULL);
 }
