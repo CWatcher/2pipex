@@ -5,6 +5,7 @@
             "label": "C/C++: make with cc the project",
             "command": "make",
             "args": [
+                   "bonus"
             //     "-g",
             //     "${file}",
             //     "-o",

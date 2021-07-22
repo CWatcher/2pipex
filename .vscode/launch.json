@@ -8,7 +8,7 @@
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/pipex",
+			"program": "${workspaceFolder}/pipex_bonus",
 			"args": ["tst/main.c", "ls .", "wc -w", "tst/out.txt"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
