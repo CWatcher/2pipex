@@ -15,7 +15,9 @@ all		: $(NAME)
 %.o		: %.c Makefile
 	$(CC) $(CFLAGS) -I$(LIBD) -MMD -c $<
 
--include $(SRC:.c=.d)force	:
+-include $(SRC:.c=.d)
+
+force	:
 
 $(LIBA)	: force
 	make -C $(LIBD) CC='$(CC)' CFLAGS='$(CFLAGS)'
@@ -28,7 +30,7 @@ bonus	: $(OBJ_B) $(LIBA) Makefile
 
 clean	:
 	make -C $(LIBD) clean
-	$(RM) $(OBJ) $(SRC:.c=.d)
+	$(RM) *.o *.d
 
 fclean	: clean
 	$(RM) $(LIBA)
