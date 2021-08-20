@@ -13,5 +13,6 @@
 cmake-build-debug
 */.gitignore
 pipex
+heredoc
 pipex_bonus
 tst*

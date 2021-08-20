@@ -21,7 +21,8 @@ SRC		= ft_free.c			\
 		  ft_strjoin.c		\
 		  ft_strlen.c		\
 		  ft_strncmp.c		\
-		  ft_strndup.c
+		  ft_strndup.c		\
+		  get_next_line.c
 
 OBJ		= $(SRC:.c=.o)
 NAME	= libft.a
