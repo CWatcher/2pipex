@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 12:32:57 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/07/21 16:59:00 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/08/18 20:56:08 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
 # include <stddef.h>
-# include <sys/types.h>
 
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
@@ -23,8 +23,7 @@ void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
-ssize_t			ft_strlen(const char *s);
-ssize_t			ft_strnlen(const char *s, ssize_t n);
+size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t			ft_strlcat(char *dst, const char *src, size_t dstsize);
 char			*ft_strdup(const char *s);
@@ -35,7 +34,7 @@ char			*ft_strstr(const char *s, const char *s2);
 char			*ft_strnstr(const char *s, const char *s2, size_t n);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_atoi(char *str);
-int				ft_atoi_skip(char **ps);
+unsigned int	ft_atou_skip(char **ps);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);
@@ -49,18 +48,11 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strappend(char **ps, const char *s2);
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_skipchr(const char *s, char delim);
-char			*ft_skipchrs(const char *s, const char *delim);
-char			*ft_skipwd(const char *s, char delim);
 char			**ft_split(char const *s, char c);
 char			**ft_freestrs(char **ps);
 char			*ft_itoa(int n);
-char			*ft_ulltoa_base(unsigned long long int num, unsigned char b);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-ssize_t			ft_putc(int c);
-ssize_t			ft_putcn(char c, ssize_t n);
 void			ft_putchar_fd(char c, int fd);
-ssize_t			ft_puts(const char *s);
-ssize_t			ft_putsn(const char *s, ssize_t n);
 void			ft_putstr_fd(const char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
@@ -82,26 +74,6 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)
 					(void *));
 
-int				min(int x, int y);
-int				max(int x, int y);
-int				sign(int x);
-void			ft_swap(int *px, int *py);
-void			ft_swap_double(double *px, double *py);
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32768
-# endif
-
-# ifndef FD_MAX
-#  define FD_MAX 255
-# endif
-
-# if BUFFER_SIZE == 0 || FD_MAX == 0
-#  error "ISO C forbids zero-size array"
-# endif
-
 void			*ft_free(void *pp);
 void			ft_reassign(void **p, void *new_address);
-
-int				get_next_line(int fd, char **ln);
 #endif
