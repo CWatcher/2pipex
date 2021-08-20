@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   exit_me.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 17:04:36 by CWatcher          #+#    #+#             */
 /*   Updated: 2021/07/21 17:17:38 by CWatcher         ###   ########.fr       */

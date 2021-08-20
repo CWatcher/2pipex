@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_skipchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:36:06 by CWatcher          #+#    #+#             */
 /*   Updated: 2021/05/12 01:34:32 by CWatcher         ###   ########.fr       */

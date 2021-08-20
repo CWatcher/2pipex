@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strappend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: CWatcher <cwatcher@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 13:50:57 by CWatcher          #+#    #+#             */
 /*   Updated: 2021/06/13 20:12:56 by CWatcher         ###   ########.fr       */
