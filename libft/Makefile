@@ -42,7 +42,8 @@ $(NAME):	$(OBJ) Makefile
 all:		$(NAME)
 
 clean:
-	$(RM) $(OBJ) $(SRC:.c=.d)
+	$(RM) $(OBJ)
+	$(RM) $(SRC:.c=.d)
 
 fclean:		clean
 	$(RM) $(NAME) $(SO)
