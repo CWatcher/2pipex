@@ -11,12 +11,14 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		exit_me(ft_strdup("heredoc: an argument is needed"));
+	ft_putstr("> ");
 	r = get_next_line(STDIN_FILENO, &s);
 	while (r > 0 && ft_strncmp(limiter, s, ft_strlen(limiter) + 1) != 0)
 	{
 		if (ft_putendl(s) < 0)
 			exit_me(ft_strdup("heredoc: failed to write()"));
 		s = ft_free(s);
+		ft_putstr("> ");
 		r = get_next_line(STDIN_FILENO, &s);
 	}
 	s = ft_free(s);

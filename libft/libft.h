@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 12:32:57 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/08/18 20:56:08 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/08/23 20:38:52 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char			**ft_freestrs(char **ps);
 char			*ft_itoa(int n);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void			ft_putchar_fd(char c, int fd);
+ssize_t			ft_putstr(const char *s);
 void			ft_putstr_fd(const char *s, int fd);
 ssize_t			ft_putendl(const char *s);
 void			ft_putendl_fd(char *s, int fd);
