@@ -68,8 +68,10 @@ void	fork_cmd(const char *cmd, char *envp[], int fd_in, int fd_out)
 		if (fd_out >= 0 && dup2(fd_out, STDOUT_FILENO) != STDOUT_FILENO)
 			exit_me(ft_strjoin("failed to dup2 on:", cmd));
 	}
-	close(fd_in);
-	close(fd_out);
+	if (fd_in != STDIN_FILENO)
+		close(fd_in);
+	if (fd_out != STDOUT_FILENO)
+		close(fd_out);
 	errno = 0;
 	if (pid == 0)
 		run_cmd(cmd, envp);
