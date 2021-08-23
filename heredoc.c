@@ -14,9 +14,7 @@ int	main(int argc, char *argv[])
 	r = get_next_line(STDIN_FILENO, &s);
 	while (r > 0 && ft_strncmp(limiter, s, ft_strlen(limiter) + 1) != 0)
 	{
-		if (write(STDOUT_FILENO, s, ft_strlen(s)) < 0)
-			exit_me(ft_strdup("heredoc: failed to write()"));
-		if (write(STDOUT_FILENO, "\n", 1) < 0)
+		if (ft_putendl(s) < 0)
 			exit_me(ft_strdup("heredoc: failed to write()"));
 		s = ft_free(s);
 		r = get_next_line(STDIN_FILENO, &s);

@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 SRC		= ft_free.c			\
+		  ft_putendl.c		\
 		  ft_putstr_fd.c	\
 		  ft_reassign.c		\
 		  ft_skipchr.c		\
