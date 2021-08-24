@@ -27,7 +27,8 @@ $(NAME)	: Makefile $(LIBA) $(OBJ) $(MAIN_OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(MAIN_OBJ) $(OBJ) $(LIBA)
 
 bonus	: Makefile $(LIBA) $(OBJ) $(MAIN_B_OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(MAIN_B_OBJ) $(OBJ) $(LIBA)
+	$(CC) $(CFLAGS) -o bonus $ $(MAIN_B_OBJ) $(OBJ) $(LIBA)
+	ln -f bonus pipex
 
 clean	:
 	make -C $(LIBD) clean
@@ -36,8 +37,8 @@ clean	:
 
 fclean	: clean
 	$(RM) $(LIBA)
-	$(RM) $(NAME)
+	$(RM) $(NAME) bonus
 
 re		: fclean all
 
-.PHONY	: all clean fclean re force bonus
+.PHONY	: all clean fclean re force
