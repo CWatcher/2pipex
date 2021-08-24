@@ -19,6 +19,7 @@ SRC		= ft_free.c			\
 		  ft_split.c		\
 		  ft_strappend.c	\
 		  ft_strchr.c		\
+		  ft_strcmp.c		\
 		  ft_strdup.c		\
 		  ft_strjoin.c		\
 		  ft_strlen.c		\

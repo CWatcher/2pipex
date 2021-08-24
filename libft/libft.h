@@ -33,6 +33,7 @@ char			*ft_strchr(const char *s, int c);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strstr(const char *s, const char *s2);
 char			*ft_strnstr(const char *s, const char *s2, size_t n);
+int				ft_strcmp(const char *s1, const char *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_atoi(char *str);
 unsigned int	ft_atou_skip(char **ps);
