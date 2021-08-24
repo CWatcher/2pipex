@@ -16,3 +16,4 @@ pipex
 heredoc
 pipex_bonus
 tst*
+out*.txt
