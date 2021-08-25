@@ -6,12 +6,13 @@
 #    By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/15 16:37:00 by CWatcher          #+#    #+#              #
-#    Updated: 2021/08/23 20:49:47 by CWatcher         ###   ########.fr        #
+#    Updated: 2021/08/25 12:37:26 by CWatcher         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC		= ft_free.c			\
 		  ft_putendl.c		\
+		  ft_putendl_fd.c	\
 		  ft_putstr.c		\
 		  ft_putstr_fd.c	\
 		  ft_reassign.c		\
