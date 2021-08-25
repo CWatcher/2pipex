@@ -24,7 +24,8 @@ $(NAME)	:  $(OBJ) $(LIBA) Makefile
 
 clean	:
 	make -C $(LIBD) clean
-	$(RM) *.o *.d
+	$(RM) $(OBJ)
+	$(RM) $(SRC:.c=.d)
 
 fclean	: clean
 	$(RM) $(LIBA)
