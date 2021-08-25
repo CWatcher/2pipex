@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/08/25 05:39:35 by CWatcher          #+#    #+#              #
+#    Updated: 2021/08/25 05:54:03 by CWatcher         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 SRC			= fork_cmd.c	\
 			  exit_me.c
 MAIN		= main.c
@@ -26,16 +38,21 @@ $(LIBA)	: force
 $(NAME)	: Makefile $(LIBA) $(OBJ) $(MAIN_OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(MAIN_OBJ) $(OBJ) $(LIBA)
 
-bonus	: Makefile $(LIBA) $(OBJ) $(MAIN_B_OBJ)
+heredoc	: force
+	make --file heredoc.mk
+
+bonus	: Makefile heredoc $(OBJ) $(MAIN_B_OBJ) # $(LIBA)
 	$(CC) $(CFLAGS) -o bonus $ $(MAIN_B_OBJ) $(OBJ) $(LIBA)
 	ln -f bonus pipex
 
 clean	:
-	make -C $(LIBD) clean
+	make --file heredoc.mk clean
+#	make -C $(LIBD) clean
 	$(RM) $(SRC:.c=.d) $(MAIN:.c=.d) $(MAIN_B:.c=.d)
 	$(RM) $(OBJ) $(MAIN_OBJ) $(MAIN_B_OBJ)
 
 fclean	: clean
+	$(RM) heredoc
 	$(RM) $(LIBA)
 	$(RM) $(NAME) bonus
 
