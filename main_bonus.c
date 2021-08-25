@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 17:04:17 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/08/25 09:45:38 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/08/25 12:42:26 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@
 static void	init(int argc, char *argv[], int *p_fd_in, int *p_fd_out)
 {
 	if (argc < 5)
-		exit_me(ft_strdup("The number of arguments is less than 4"));
+		exit_me(ft_strdup("The number of arguments is less than 4"), NULL);
 	if (ft_strcmp(argv[1], "here_doc") == 0 && argc == 6)
 	{
 		*p_fd_in = 0;
 		*p_fd_out = open(argv[argc - 1], O_CREAT | O_WRONLY | O_APPEND, 0644);
 		argv[2] = ft_strjoin("./heredoc ", argv[2]);
 		if (!argv[2])
-			exit_me(ft_strdup("Failed to ft_strjoin()"));
+			exit_me(ft_strdup("Failed to ft_strjoin()"), argv + 2);
 	}
 	else
 	{
@@ -36,9 +36,9 @@ static void	init(int argc, char *argv[], int *p_fd_in, int *p_fd_out)
 		*p_fd_out = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	}
 	if (*p_fd_in < 0)
-		exit_me(ft_strjoin("Failed to open:", argv[1]));
+		exit_me(ft_strjoin("Failed to open:", argv[1]), argv + 2);
 	if (*p_fd_out < 0)
-		exit_me(ft_strjoin("Failed to open:", argv[argc - 1]));
+		exit_me(ft_strjoin("Failed to open:", argv[argc - 1]), argv + 2);
 }
 
 static void	fork_multipipe(char *cmds[], char *envp[], int fd_in, int fd_out)
@@ -48,7 +48,7 @@ static void	fork_multipipe(char *cmds[], char *envp[], int fd_in, int fd_out)
 	while (*(cmds + 2))
 	{
 		if (pipe(pipe_fds) < 0)
-			exit_me(ft_strjoin("Failed to pipe() on:", *cmds));
+			exit_me(ft_strjoin("Failed to pipe() on:", *cmds), cmds);
 		fork_cmd(*cmds, envp, fd_in, pipe_fds[1]);
 		fd_in = pipe_fds[0];
 		cmds++;
@@ -70,6 +70,5 @@ int	main(int argc, char *argv[], char *envp[])
 		wait(NULL);
 		i++;
 	}
-	if (ft_strcmp(argv[1], "here_doc") == 0 && argc == 6)
-		free(argv[2]);
+	exit_me(NULL, argv + 2);
 }

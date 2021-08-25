@@ -6,13 +6,13 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 17:04:36 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/07/21 17:17:38 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/08/25 12:38:44 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXIT_ME_H
 # define EXIT_ME_H
 
-void	exit_me(char *dynamic_error);
+void	exit_me(char *dynamic_error, char *cmds[]);
 
 #endif

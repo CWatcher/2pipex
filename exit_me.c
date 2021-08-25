@@ -16,11 +16,27 @@
 #include <errno.h>
 #include "libft.h"
 
-void	exit_me(char *dynamic_error)
+static int	count_strs(char *strs[])
+{
+	int	n_strs;
+
+	if (!strs)
+		return (0);
+	n_strs = 0;
+	while (strs[n_strs])
+		n_strs++;
+	return (n_strs);
+}
+
+void	exit_me(char *dynamic_error, char *cmds[])
 {
 	int	status;
 
-	status = EXIT_SUCCESS;
+	if (ft_strncmp(cmds[0], "./heredoc", ft_strlen("./heredoc")) == 0
+		&& count_strs(cmds) == 4)
+		free(cmds[0]);
+	if (!dynamic_error)
+		exit(EXIT_SUCCESS);
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	if (errno)
 	{

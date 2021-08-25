@@ -53,7 +53,7 @@ static void	run_cmd(const char *cmd, char *envp[])
 		pathname = get_exec_pathname(argv[0], find_value(envp, "PATH="));
 	execve(pathname, argv, envp);
 	ft_freestrs(argv);
-	exit_me(pathname);
+	exit_me(pathname, cmd);
 }
 
 void	fork_cmd(const char *cmd, char *envp[], int fd_in, int fd_out)

@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 17:04:17 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/07/21 17:04:32 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/08/25 12:45:44 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ int	main(int argc, char *argv[], char *envp[])
 	int	pipe_fds[2];
 
 	if (argc != 5)
-		exit_me(ft_strdup("The number of arguments is not equal to 4"));
+		exit_me(ft_strdup("The number of arguments is not equal to 4"), NULL);
 	fd_in = open(argv[1], O_RDONLY);
 	if (fd_in < 0)
-		exit_me(ft_strjoin("Failed to open:", argv[1]));
+		exit_me(ft_strjoin("Failed to open:", argv[1]), NULL);
 	if (pipe(pipe_fds) < 0)
-		exit_me(ft_strdup("Failed to pipe()"));
+		exit_me(ft_strdup("Failed to pipe()"), NULL);
 	fd_out = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd_out < 0)
-		exit_me(ft_strjoin("Failed to open:", argv[4]));
+		exit_me(ft_strjoin("Failed to open:", argv[4]), NULL);
 	fork_cmd(argv[2], envp, fd_in, pipe_fds[1]);
 	fork_cmd(argv[3], envp, pipe_fds[0], fd_out);
 	wait(NULL);
