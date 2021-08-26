@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fork_cmd.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/26 15:24:29 by CWatcher          #+#    #+#             */
+/*   Updated: 2021/08/26 15:37:50 by CWatcher         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <errno.h>
 #include "libft.h"
@@ -69,10 +81,11 @@ void	fork_cmd(const char *cmd, char *envp[], int fd_in, int fd_out)
 			exit_me(ft_strjoin("failed to dup2 on:", cmd));
 	}
 	if (fd_in != STDIN_FILENO)
-		close(fd_in);
+		if (close(fd_in) != 0)
+			exit_me(ft_strdup("Failed to close(fd_in) in fork_cmd()"));
 	if (fd_out != STDOUT_FILENO)
-		close(fd_out);
-	errno = 0;
+		if (close(fd_out) != 0)
+			exit_me(ft_strdup("Failed to close(fd_out) in fork_cmd()"));
 	if (pid == 0)
 		run_cmd(cmd, envp);
 	if (pid < 0)
