@@ -8,7 +8,7 @@ make pipex > /dev/null && echo make ok!
 
 [ ! -d bin ] && mkdir bin
 PATH=bin:$PATH
-rm out.error.txt
+[ -f out.error.txt ] && rm out.error.txt
 
 ln -sf no_file bin/ls
 echo test1 error output: > out.error.txt
