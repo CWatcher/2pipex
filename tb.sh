@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash --posix
 # sample usage: ./tb.sh main.c cat "grep int" "wc -l"
 < $1 $2 | $3 | $4 > out.0.txt
 ./pipex "$1" "$2" "$3" "$4" out.txt
