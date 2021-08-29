@@ -3,6 +3,9 @@
 make pipex > /dev/null && echo make ok!
 
 ./t.sh main.c cat "wc -l"
+./t.sh main.c "t.exit.sh 0" "t.exit.sh -1"
+./t.sh main.c "t.exit.sh 0" "t.exit.sh 256"
+./t.sh main.c "t.exit.sh 256" "t.exit.sh 0"
 
 #$PATH
 

@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 15:24:29 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/08/26 15:37:50 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/08/29 18:03:50 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	run_cmd(const char *cmd, char *envp[])
 	exit_me(pathname);
 }
 
-void	fork_cmd(const char *cmd, char *envp[], int fd_in, int fd_out)
+pid_t	fork_cmd(const char *cmd, char *envp[], int fd_in, int fd_out)
 {
 	pid_t	pid;
 
@@ -90,4 +90,5 @@ void	fork_cmd(const char *cmd, char *envp[], int fd_in, int fd_out)
 		run_cmd(cmd, envp);
 	if (pid < 0)
 		exit_me(ft_strjoin("Failed to fork() on:", cmd));
+	return (pid);
 }

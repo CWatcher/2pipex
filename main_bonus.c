@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 17:04:17 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/08/26 15:40:51 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/08/29 18:26:44 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	init(int argc, char *argv[], int *p_fd_in, int *p_fd_out)
 		exit_me(ft_strjoin("Failed to open:", argv[argc - 1]));
 }
 
-static void	get_put_heredoc(const char	*limiter, int fd_out)
+static void	get_put_heredoc(const char *limiter, int fd_out)
 {
 	char		*s;
 	int			r;
@@ -67,7 +67,7 @@ static void	get_put_heredoc(const char	*limiter, int fd_out)
 		exit_me(ft_strdup("heredoc: failed to get_next_line()"));
 }
 
-void	fork_heredoc(const char	*limiter, int fd_out)
+static void	fork_heredoc(const char *limiter, int fd_out)
 {
 	pid_t	pid;
 
@@ -86,9 +86,9 @@ void	fork_heredoc(const char	*limiter, int fd_out)
 		exit_me(ft_strjoin("Failed to fork() on here_doc ", limiter));
 }
 
-static void	fork_multipipe(char *cmds[], char *envp[], int fd_in, int fd_out)
+static pid_t	fork_multipipe(char *cmds[], char *envp[], int fd_in, int fd_out)
 {
-	int			pipe_fds[2];
+	int		pipe_fds[2];
 
 	while (*(cmds + 2))
 	{
@@ -98,15 +98,16 @@ static void	fork_multipipe(char *cmds[], char *envp[], int fd_in, int fd_out)
 		fd_in = pipe_fds[0];
 		cmds++;
 	}
-	fork_cmd(*cmds, envp, fd_in, fd_out);
+	return (fork_cmd(*cmds, envp, fd_in, fd_out));
 }
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	int		fd_in;
-	int		fd_out;
-	int		i;
-	int		cmd_offset;
+	int	fd_in;
+	int	fd_out;
+	int	i;
+	int	cmd_offset;
+	int	status;
 
 	init(argc, argv, &fd_in, &fd_out);
 	cmd_offset = 2;
@@ -118,11 +119,12 @@ int	main(int argc, char *argv[], char *envp[])
 			exit_me(ft_strjoin("Failed to open:", argv[argc - 1]));
 		cmd_offset = 3;
 	}
-	fork_multipipe(argv + cmd_offset, envp, fd_in, fd_out);
+	waitpid(fork_multipipe(argv + cmd_offset, envp, fd_in, fd_out), &status, 0);
 	i = 2;
-	while (i < argc - 1)
+	while (i < argc - 2)
 	{
 		wait(NULL);
 		i++;
 	}
+	return (WEXITSTATUS(status));
 }
