@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 17:04:17 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/08/29 16:20:42 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/08/31 13:41:59 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <sys/wait.h>
 #include "libft.h"
 #include "exit_me.h"
-#include "fork_cmd.h"
+#include "fork_boost.h"
 
 int	main(int argc, char *argv[], char *envp[])
 {

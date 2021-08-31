@@ -6,11 +6,13 @@
 #    By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 05:39:35 by CWatcher          #+#    #+#              #
-#    Updated: 2021/08/28 12:38:51 by CWatcher         ###   ########.fr        #
+#    Updated: 2021/08/31 13:40:52 by CWatcher         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC			= fork_cmd.c	\
+SRC			= fork_cmd.c		\
+			  fork_heredoc.c	\
+			  fork_multipipe.c	\
 			  exit_me.c
 MAIN		= main.c
 MAIN_B		= main_bonus.c
