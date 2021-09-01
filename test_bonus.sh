@@ -1,5 +1,6 @@
 #!/bin/bash --posix
 
+norminette | grep 'Error: '
 make bonus > /dev/null && echo make: ok!
 
 ./t.sh main_bonus.c cat "wc -l"

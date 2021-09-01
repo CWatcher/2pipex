@@ -1,5 +1,6 @@
 #!/bin/bash --posix
 
+norminette | grep 'Error: '
 make pipex > /dev/null && echo make ok!
 
 ./t.sh main.c cat "wc -l"

@@ -1,5 +1,6 @@
 #!/bin/bash --posix
 
+norminette | grep 'Error: '
 make bonus > /dev/null && echo make: ok!
 
 echo Old content > out.0.txt
