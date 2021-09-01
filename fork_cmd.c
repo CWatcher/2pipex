@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 15:24:29 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/08/29 18:03:50 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/09/01 14:47:29 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	*get_exec_pathname(const char *filename, const char *path_var)
 	return (found_pathname);
 }
 
-static void	run_cmd(const char *cmd, char *envp[])
+static void	exec_cmd(const char *cmd, char *envp[])
 {
 	char	**argv;
 	char	*pathname;
@@ -87,7 +87,7 @@ pid_t	fork_cmd(const char *cmd, char *envp[], int fd_in, int fd_out)
 		if (close(fd_out) != 0)
 			exit_me(ft_strdup("Failed to close(fd_out) in fork_cmd()"));
 	if (pid == 0)
-		run_cmd(cmd, envp);
+		exec_cmd(cmd, envp);
 	if (pid < 0)
 		exit_me(ft_strjoin("Failed to fork() on:", cmd));
 	return (pid);
