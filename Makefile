@@ -6,7 +6,7 @@
 #    By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 05:39:35 by CWatcher          #+#    #+#              #
-#    Updated: 2021/08/31 13:40:52 by CWatcher         ###   ########.fr        #
+#    Updated: 2021/09/02 16:56:36 by CWatcher         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,10 +39,10 @@ $(LIBA)	: force
 	make -C $(LIBD) CC='$(CC)' CFLAGS='$(CFLAGS)'
 
 $(NAME)	: Makefile $(LIBA) $(OBJ) $(MAIN_OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(MAIN_OBJ) $(OBJ) $(LIBA)
+	$(CC) $(CFLAGS) -o $@ $(MAIN_OBJ) $(OBJ) $(LIBA)
 
 bonus	: Makefile $(LIBA) $(OBJ) $(OBJ_B) $(MAIN_B_OBJ)
-	$(CC) $(CFLAGS) -o bonus $ $(MAIN_B_OBJ) $(OBJ_B) $(OBJ) $(LIBA)
+	$(CC) $(CFLAGS) -o $@ $(MAIN_B_OBJ) $(OBJ_B) $(OBJ) $(LIBA)
 	ln -f bonus pipex
 
 clean	:
