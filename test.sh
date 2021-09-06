@@ -5,6 +5,7 @@ make pipex > /dev/null && echo make ok!
 
 ./t.sh Makefile cat "wc -l"
 ./t.sh Makefile yes ls
+./t.sh Makefile env cat
 ./t.sh Makefile "t.exit.sh 0" "t.exit.sh -1"
 ./t.sh Makefile "t.exit.sh 0" "t.exit.sh 256"
 ./t.sh Makefile "t.exit.sh 256" "t.exit.sh 0"
