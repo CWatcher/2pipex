@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 17:04:17 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/08/31 13:41:59 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/09/06 17:22:05 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,5 @@ int	main(int argc, char *argv[], char *envp[])
 	fork_cmd(argv[2], envp, fd_in, pipe_fds[1]);
 	last_process = fork_cmd(argv[3], envp, pipe_fds[0], fd_out);
 	waitpid(last_process, &status, 0);
-	wait(NULL);
 	return (WEXITSTATUS(status));
 }

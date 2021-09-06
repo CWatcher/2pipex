@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 17:04:17 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/08/31 13:39:29 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/09/06 17:27:23 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	int	fd_in;
 	int	fd_out;
-	int	i;
 	int	cmd_offset;
 	int	status;
 
@@ -62,11 +61,5 @@ int	main(int argc, char *argv[], char *envp[])
 		cmd_offset = 3;
 	}
 	waitpid(fork_multipipe(argv + cmd_offset, envp, fd_in, fd_out), &status, 0);
-	i = 2;
-	while (i < argc - 2)
-	{
-		wait(NULL);
-		i++;
-	}
 	return (WEXITSTATUS(status));
 }
