@@ -6,7 +6,7 @@
 #    By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 05:39:35 by CWatcher          #+#    #+#              #
-#    Updated: 2021/09/02 16:56:36 by CWatcher         ###   ########.fr        #
+#    Updated: 2021/09/08 22:42:00 by CWatcher         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ OBJ_B		= $(SRC_B:.c=.o)
 MAIN_OBJ	= $(MAIN:.c=.o)
 MAIN_B_OBJ	= $(MAIN_B:.c=.o)
 CFLAGS	= -Wall -Wextra -Wpedantic -Werror -g -fsanitize=address
+CC		= clang
 NAME	= pipex
 LIB		= ft
 LIBD	= lib$(LIB)
@@ -35,7 +36,12 @@ all		: $(NAME)
 
 force	:
 
-$(LIBA)	: force
+mclean	:
+	make -C $(LIBD) fclean
+
+Makefile:
+
+$(LIBA)	: Makefile force
 	make -C $(LIBD) CC='$(CC)' CFLAGS='$(CFLAGS)'
 
 $(NAME)	: Makefile $(LIBA) $(OBJ) $(MAIN_OBJ)
