@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_get_next_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include <unistd.h>
-#include "get_next_line.h"
+#include "ft_get_next_line.h"
 
 static ssize_t	set(ssize_t *pn, int n)
 {
@@ -26,7 +26,7 @@ static void	*set_p(void **pp, void *p)
 	return (*pp);
 }
 
-int	get_next_line(int fd, char **ln)
+int	ft_get_next_line(int fd, char **ln)
 {
 	static t_buffer	b[FD_MAX + 1];
 	t_str			s;

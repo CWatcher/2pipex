@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 17:04:17 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/09/23 21:58:43 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/09/25 23:49:58 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 #include "libft.h"
-#include "get_next_line.h"
+#include "ft_io.h"
 #include "fork_boost.h"
 #include "exit_me.h"
 

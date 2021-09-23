@@ -26,7 +26,7 @@ SRC		= ft_free.c			\
 		  ft_strlen.c		\
 		  ft_strncmp.c		\
 		  ft_strndup.c		\
-		  get_next_line.c
+		  ft_get_next_line.c
 
 OBJ		= $(SRC:.c=.o)
 NAME	= libft.a
