@@ -9,6 +9,7 @@ make pipex > /dev/null && echo make ok!
 ./t.sh Makefile "t.exit.sh 0" "t.exit.sh -1"
 ./t.sh Makefile "t.exit.sh 0" "t.exit.sh 256"
 ./t.sh Makefile "t.exit.sh 256" "t.exit.sh 0"
+./t.sh file1 cmd1 cmd2
 
 #$PATH
 
