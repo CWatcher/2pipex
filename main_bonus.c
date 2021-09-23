@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 17:04:17 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/09/06 17:27:23 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/09/23 21:58:43 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ int	main(int argc, char *argv[], char *envp[])
 			exit_me(ft_strjoin("Failed to open:", argv[argc - 1]));
 		cmd_offset = 3;
 	}
-	waitpid(fork_multipipe(argv + cmd_offset, envp, fd_in, fd_out), &status, 0);
+	waitpid(fork_pipeline(argv + cmd_offset, envp, fd_in, fd_out), &status, 0);
 	return (WEXITSTATUS(status));
 }

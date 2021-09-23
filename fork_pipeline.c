@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_multipipe.c                                   :+:      :+:    :+:   */
+/*   fork_pipeline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 17:04:17 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/09/01 14:32:24 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:09:22 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "fork_boost.h"
 #include "exit_me.h"
 
-pid_t	fork_multipipe(char *cmds[], char *envp[], int fd_in, int fd_out)
+pid_t	fork_pipeline(char *cmds[], char *envp[], int fd_in, int fd_out)
 {
 	int		pipe_fds[2];
 
