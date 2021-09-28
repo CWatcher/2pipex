@@ -1,2 +1,8 @@
 bonus executable name is pipex
 bonus rule does not relink
+pipex here_doc xx no_cmd ls out
+pipex here_doc xx cat ls out
+
+in test.sh?:
+yes | head - 5
+yes | cat | head -5
