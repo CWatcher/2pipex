@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 17:04:17 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/12/10 16:26:38 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/12/10 19:44:02 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	main(int argc, char *argv[], char *envp[])
 		exit_me(ft_strjoin("Failed to open:", argv[1]));
 	if (pipe(pipe_fds) < 0)
 		exit_me(ft_strdup("Failed to pipe()"));
-	fd_out = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC,
-			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd_out < 0)
 		exit_me(ft_strjoin("Failed to open:", argv[4]));
 	fork_cmd(argv[2], envp, fd_in, pipe_fds[1]);
+	fd_out = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC,
+			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	last_process = fork_cmd(argv[3], envp, pipe_fds[0], fd_out);
 	waitpid(last_process, &status, 0);
 	// while (wait(NULL) > 0)
