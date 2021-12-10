@@ -6,7 +6,7 @@
 #    By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 05:39:35 by CWatcher          #+#    #+#              #
-#    Updated: 2021/09/23 21:59:46 by CWatcher         ###   ########.fr        #
+#    Updated: 2021/12/10 15:33:28 by CWatcher         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ			= $(SRC:.c=.o)
 OBJ_B		= $(SRC_B:.c=.o)
 MAIN_OBJ	= $(MAIN:.c=.o)
 MAIN_B_OBJ	= $(MAIN_B:.c=.o)
-CFLAGS	= -Wall -Wextra -Wpedantic -Werror -g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Wpedantic -Werror #-g #-fsanitize=address
 NAME	= pipex
 LIB		= ft
 LIBD	= lib$(LIB)

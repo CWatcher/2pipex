@@ -6,7 +6,7 @@
 /*   By: CWatcher <cwatcher@student.21-school.r>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 15:24:29 by CWatcher          #+#    #+#             */
-/*   Updated: 2021/09/01 14:47:29 by CWatcher         ###   ########.fr       */
+/*   Updated: 2021/12/10 15:41:18 by CWatcher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static void	exec_cmd(const char *cmd, char *envp[])
 	exit_me(pathname);
 }
 
+#include <stdio.h>
+
 pid_t	fork_cmd(const char *cmd, char *envp[], int fd_in, int fd_out)
 {
 	pid_t	pid;
@@ -80,10 +82,13 @@ pid_t	fork_cmd(const char *cmd, char *envp[], int fd_in, int fd_out)
 		if (fd_out >= 0 && dup2(fd_out, STDOUT_FILENO) != STDOUT_FILENO)
 			exit_me(ft_strjoin("failed to dup2 on:", cmd));
 	}
-	if (fd_in != STDIN_FILENO)
+//	if (fd_in != STDIN_FILENO)
+
+		fprintf(stderr, "Closing fd_in %d...\n", fd_in);
 		if (close(fd_in) != 0)
 			exit_me(ft_strdup("Failed to close(fd_in) in fork_cmd()"));
-	if (fd_out != STDOUT_FILENO)
+//	if (fd_out != STDOUT_FILENO)
+		fprintf(stderr, "Closing fd_out %d...\n", fd_out);
 		if (close(fd_out) != 0)
 			exit_me(ft_strdup("Failed to close(fd_out) in fork_cmd()"));
 	if (pid == 0)
